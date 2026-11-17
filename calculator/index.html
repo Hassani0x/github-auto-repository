@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Calculator</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;color:#edf2ed;background:radial-gradient(ellipse at top left,#223935,#101614 62%);font:16px "DM Sans",system-ui,sans-serif}
+main{width:min(100%,780px);padding:32px}h1{font-size:clamp(2rem,6vw,3.4rem);letter-spacing:-.065em;font-weight:550;margin:0 0 24px}
+.panel{display:grid;grid-template-columns:3fr 2fr;background:#17211f;border:1px solid #41504c;border-radius:20px;overflow:hidden;box-shadow:0 26px 70px #0004}
+.calc,aside{padding:22px}aside{background:#121b19;border-left:1px solid #34433f}h2{font-size:.87rem;font-weight:550;margin:0 0 16px;color:#b3c5bf}
+output,small{display:block;text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}small{min-height:1.5em;color:#afc2b9}output{font-size:clamp(1.8rem,6vw,3rem);min-height:1.6em}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:16px}button{border:0;border-radius:10px;min-height:52px;background:#293632;color:inherit;font:500 1.2rem system-ui;cursor:pointer}button:hover{filter:brightness(1.25)}button:active{transform:translateY(1px)}button:focus-visible{outline:3px solid white;outline-offset:1px}.op{background:#35493e;color:#c3edb9}.equal{background:#b6ef95;color:#172615}.wide{grid-column:span 2}
+ol{list-style:none;padding:0;margin:0;max-height:340px;overflow:auto}li{padding:10px 0;border-top:1px solid #34413c;overflow-wrap:anywhere;color:#cfdbd4;font-size:.92rem}p{color:#98afa4;font-size:.9rem}
+@media(max-width:620px){main{padding:18px}.panel{grid-template-columns:1fr}aside{border-left:0;border-top:1px solid #34433f}ol{max-height:140px}}
+</style></head>
+<body><main><h1>Calculator</h1><div class="panel"><section class="calc" aria-label="Calculator keypad"><small id="expression"></small><output id="display" aria-live="polite">0</output><div class="keys"></div></section><aside><h2>History</h2><p id="empty">Your calculations appear here.</p><ol></ol></aside></div></main>
+<script>
+const keys=document.querySelector('.keys'), display=document.querySelector('output');
+const symbols={'+':'+','-':'−','*':'×','/':'÷'};
+let entry='0', left=null, operator=null, fresh=true;
+function reset(){entry='0';left=null;operator=null;fresh=true}
+function format(n){if(!Number.isFinite(n))throw Error();return String(Number(n.toPrecision(12)))}
+function calculate(){
+  const right=Number(entry);
+  const result=format(({'+':()=>left+right,'-':()=>left-right,'*':()=>left*right,'/':()=>left/right})[operator]());
+  const item=document.createElement('li');
+  item.textContent=left+' '+symbols[operator]+' '+entry+' = '+result;
+  const list=document.querySelector('ol');list.prepend(item);
+  if(list.children.length>50)list.lastChild.remove();
+  document.querySelector('#empty').hidden=true;
+  entry=result;operator=null;left=null;fresh=true;
+}
+function press(key){
+  try{
+    if(key==='Escape')reset();
+    else if(/^\d$/.test(key)){if(fresh||entry==='0')entry=key;else if(entry.length<16)entry+=key;fresh=false}
+    else if(key==='.'){if(fresh)entry='0';if(!entry.includes('.'))entry+='.';fresh=false}
+    else if(key==='Backspace'){entry=fresh?'0':entry.slice(0,-1)||'0';fresh=false}
+    else if(key==='%'){entry=format(Number(entry)/100);fresh=false}
+    else if(key in symbols){if(operator&&!fresh)calculate();left=Number(entry);operator=key;fresh=true}
+    else if(key==='='&&operator)calculate();
+  }catch{reset();display.textContent='Error';document.querySelector('#expression').textContent='Invalid calculation';return}
+  display.textContent=entry;
+  document.querySelector('#expression').textContent=operator?left+' '+symbols[operator]:'';
+}
+for(const key of ['Escape','Backspace','%','/','7','8','9','*','4','5','6','-','1','2','3','+','0','.','=']){
+  const b=document.createElement('button');b.textContent=({Escape:'AC',Backspace:'⌫'})[key]||symbols[key]||key;
+  b.className=key==='0'?'wide':key==='='?'equal':(/[0-9.]/.test(key)?'':'op');
+  b.setAttribute('aria-label',({Escape:'Clear',Backspace:'Backspace','*':'Multiply','/':'Divide','=':'Equals'})[key]||b.textContent);
+  b.onclick=()=>press(key);keys.append(b);
+}
+document.addEventListener('keydown',event=>{
+  if(event.ctrlKey||event.altKey||event.metaKey)return;
+  const k=event.key==='Enter'?'=':event.key;
+  if(/^([0-9.+*/%=-]|Backspace|Escape)$/.test(k)){event.preventDefault();press(k)}
+});
+</script></body></html>

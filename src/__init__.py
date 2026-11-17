@@ -1,0 +1,1 @@
+"""GitHub repository lifecycle dispatcher."""
