@@ -1,5 +1,5 @@
 automation:
-  enabled: false
+  enabled: true
   timezone: UTC
   min_daily_runs: 7
   max_daily_runs: 15
@@ -17,4 +17,4 @@ security:
   verify_repository_owner: true
   verify_repository_id: true
   protect_existing_repositories: true
-  dry_run: true
+  dry_run: false
