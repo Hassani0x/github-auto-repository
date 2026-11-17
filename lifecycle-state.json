@@ -60,7 +60,7 @@
           "deleted": false,
           "duration": null,
           "error": null,
-          "phase": "created"
+          "phase": "uploading"
         },
         {
           "id": "a5d5aa03501c48db874b34bd28fb0e17",
@@ -138,5 +138,5 @@
       }
     }
   },
-  "sha256": "c034fbd7f3b0a72db08af5bde3e1520978b3015547fed4ab9005a680b4c9ae8b"
+  "sha256": "ad961cd81dee78051049f457438cb658c06b0faa444be3e6fbef6cde807412c9"
 }
