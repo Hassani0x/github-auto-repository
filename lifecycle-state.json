@@ -56,12 +56,13 @@
             "owner": "Hassani0x"
           },
           "upload": true,
-          "verified": false,
+          "verified": true,
           "deleted": false,
           "duration": null,
           "error": null,
-          "phase": "uploaded",
-          "commit": "2ad211af6a313aeeaa8483107381ef30ee279c1f"
+          "phase": "verified",
+          "commit": "2ad211af6a313aeeaa8483107381ef30ee279c1f",
+          "delete_at": 1794906912.2095637
         },
         {
           "id": "a5d5aa03501c48db874b34bd28fb0e17",
@@ -139,5 +140,5 @@
       }
     }
   },
-  "sha256": "a948a6468b644752d6af110721ebd6bdb6d22f0753536b90b2aa42505052fdba"
+  "sha256": "d4307a40f69f424d2dd209a38ebc820ca769c56b009685fec640bbb8a520299a"
 }
