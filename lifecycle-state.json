@@ -45,7 +45,7 @@
         {
           "id": "89f14842ecca445b9970551a6e10334a",
           "scheduled": 1794906827,
-          "status": "active",
+          "status": "completed",
           "actual": 1794906840,
           "name": "auto-calculator-20261117091400-89f14842ecca445b9970551a6e10334a",
           "receipt": {
@@ -57,8 +57,8 @@
           },
           "upload": true,
           "verified": true,
-          "deleted": false,
-          "duration": null,
+          "deleted": true,
+          "duration": 76.12,
           "error": null,
           "phase": "acknowledged",
           "commit": "2ad211af6a313aeeaa8483107381ef30ee279c1f",
@@ -140,5 +140,5 @@
       }
     }
   },
-  "sha256": "410499a0c9d83fed026d7f49658d65e8fd01f1172b7773cbe4f9e642fedb3cee"
+  "sha256": "17104d53327102daa99f36d488f737c363f376c7a4e38b0ed8ce6bcb8dc5e42d"
 }
