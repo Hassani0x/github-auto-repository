@@ -60,7 +60,7 @@
           "deleted": false,
           "duration": null,
           "error": null,
-          "phase": "deleting",
+          "phase": "acknowledged",
           "commit": "2ad211af6a313aeeaa8483107381ef30ee279c1f",
           "delete_at": 1794906912.2095637
         },
@@ -140,5 +140,5 @@
       }
     }
   },
-  "sha256": "4e68ee4da70adc8a1b9261140c5bb80599498fff29c46ee2a51efb7d3d99d7fc"
+  "sha256": "410499a0c9d83fed026d7f49658d65e8fd01f1172b7773cbe4f9e642fedb3cee"
 }
