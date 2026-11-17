@@ -50,7 +50,7 @@ Two credentials serve different purposes. The personal access token authenticate
 
 ## Schedule and execution
 
-The workflow polls at minutes 7, 27 and 47 of each hour. GitHub **cannot guarantee execution at an exact scheduled minute**. Scheduled jobs run from the default branch and can be delayed or dropped. Public repositories can have schedules disabled after extended inactivity. The controller runs in GitHub's cloud while your computer is off. [Scheduled workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
+The workflow polls at minutes 8, 28, 38 and 48 of each hour. GitHub **cannot guarantee execution at an exact scheduled minute**. Scheduled jobs run from the default branch and can be delayed or dropped. Public repositories can have schedules disabled after extended inactivity. The controller runs in GitHub's cloud while your computer is off. [Scheduled workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
 
 The first live poll each local day commits the entire plan. The scheduler weights counts near `target_daily_average` more heavily, excludes the previous planned count by default, and samples a random instant in each of several windows across the actual local day. It reserves the minimum spacing between windows, including across midnight. It uses elapsed seconds across daylight-saving transitions. Ten is the approximate average **planned** count. Delays, shutdowns and failures can reduce completions.
 
@@ -76,7 +76,7 @@ A workflow-wide concurrency group serializes scheduled and manual runs. Each che
 
 ## Usage and cost
 
-At the shipped polling cadence there are up to 72 scheduled jobs per day after approval, about 2,160 in a 30-day month, plus roughly 300 one-minute retention waits if ten runs complete each day. Provisioning, dependency installation, API work, time rounding and retries can add usage. Idle polls exit after checking state. Standard hosted runners in public repositories are free under GitHub's current billing rules. Private controllers draw on plan allowances and may incur charges. Review **Settings → Billing and licensing** and configure a budget before activation. [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions)
+At the shipped polling cadence there are up to 96 scheduled jobs per day after approval, about 2,880 in a 30-day month, plus roughly 300 one-minute retention waits if ten runs complete each day. Provisioning, dependency installation, API work, time rounding and retries can add usage. Idle polls exit after checking state. Standard hosted runners in public repositories are free under GitHub's current billing rules. Private controllers draw on plan allowances and may incur charges. Review **Settings → Billing and licensing** and configure a budget before activation. [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions)
 
 Use the system only for repository lifecycle testing. Keep within account quotas and platform limits. The dispatcher has no contribution-statistics or evasion features.
 
