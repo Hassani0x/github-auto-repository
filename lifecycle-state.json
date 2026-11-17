@@ -48,13 +48,19 @@
           "status": "active",
           "actual": 1794906840,
           "name": "auto-calculator-20261117091400-89f14842ecca445b9970551a6e10334a",
-          "receipt": null,
+          "receipt": {
+            "id": 1461170446,
+            "created_at": "2026-11-17T09:14:03Z",
+            "name": "auto-calculator-20261117091400-89f14842ecca445b9970551a6e10334a",
+            "owner_id": 330960388,
+            "owner": "Hassani0x"
+          },
           "upload": false,
           "verified": false,
           "deleted": false,
           "duration": null,
           "error": null,
-          "phase": "creating"
+          "phase": "created"
         },
         {
           "id": "a5d5aa03501c48db874b34bd28fb0e17",
@@ -132,5 +138,5 @@
       }
     }
   },
-  "sha256": "41626f9281d3281e6888c8700e339ded7e68134688192920c324f6db6a577685"
+  "sha256": "c034fbd7f3b0a72db08af5bde3e1520978b3015547fed4ab9005a680b4c9ae8b"
 }
