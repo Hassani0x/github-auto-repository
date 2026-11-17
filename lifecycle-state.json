@@ -55,12 +55,13 @@
             "owner_id": 330960388,
             "owner": "Hassani0x"
           },
-          "upload": false,
+          "upload": true,
           "verified": false,
           "deleted": false,
           "duration": null,
           "error": null,
-          "phase": "uploading"
+          "phase": "uploaded",
+          "commit": "2ad211af6a313aeeaa8483107381ef30ee279c1f"
         },
         {
           "id": "a5d5aa03501c48db874b34bd28fb0e17",
@@ -138,5 +139,5 @@
       }
     }
   },
-  "sha256": "ad961cd81dee78051049f457438cb658c06b0faa444be3e6fbef6cde807412c9"
+  "sha256": "a948a6468b644752d6af110721ebd6bdb6d22f0753536b90b2aa42505052fdba"
 }
