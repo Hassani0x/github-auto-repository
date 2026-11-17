@@ -135,10 +135,14 @@
     "timezone": "UTC",
     "usage": {
       "2026-11-17": {
-        "requests": 0,
-        "rate": {}
+        "requests": 20,
+        "rate": {
+          "remaining": "4987",
+          "reset": "1794910441",
+          "limit": "5000"
+        }
       }
     }
   },
-  "sha256": "17104d53327102daa99f36d488f737c363f376c7a4e38b0ed8ce6bcb8dc5e42d"
+  "sha256": "a6c392beec299a8f8745e21003204e4c77ec5fb7f18928f31b6012acbac318d3"
 }
