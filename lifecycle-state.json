@@ -45,15 +45,16 @@
         {
           "id": "89f14842ecca445b9970551a6e10334a",
           "scheduled": 1794906827,
-          "status": "pending",
-          "actual": null,
+          "status": "active",
+          "actual": 1794906840,
           "name": null,
           "receipt": null,
           "upload": false,
           "verified": false,
           "deleted": false,
           "duration": null,
-          "error": null
+          "error": null,
+          "phase": "claimed"
         },
         {
           "id": "a5d5aa03501c48db874b34bd28fb0e17",
@@ -122,9 +123,14 @@
         }
       ]
     },
-    "last_start": 0,
+    "last_start": 1794906840,
     "timezone": "UTC",
-    "usage": {}
+    "usage": {
+      "2026-11-17": {
+        "requests": 0,
+        "rate": {}
+      }
+    }
   },
-  "sha256": "53be4cf6e17ea129699c67a95a08ebdf3047a8d0ac9d1411402f388d44061a99"
+  "sha256": "452b688708e52fdbc4d7fa6eca4a2084d894e4d91b06774b115db285d66270f3"
 }
