@@ -1,0 +1,1 @@
+# Daily activity marker, toggled by the workflow.
