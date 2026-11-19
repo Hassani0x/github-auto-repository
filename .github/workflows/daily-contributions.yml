@@ -1,0 +1,53 @@
+name: Daily contributions
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  contribute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Maybe commit once this hour
+        env:
+          TZ: Asia/Kabul
+        run: |
+          set -e
+          sleep $((RANDOM % 1200))
+          TODAY=$(date +%F)
+          HOUR_NOW=$(date +%H)
+          TARGET=$(python3 -c "import hashlib; print(9 + int(hashlib.sha256('$TODAY'.encode()).hexdigest()[:8], 16) % 6)")
+          COUNT=$(git log --since="$TODAY 00:00:00 +0430" --until="$TODAY 23:59:59 +0430" --grep="daily activity" --oneline | wc -l)
+          echo "Today $TODAY target=$TARGET already=$COUNT hour=$HOUR_NOW"
+          if [ "$COUNT" -ge "$TARGET" ]; then
+            echo "Target reached for today."
+            exit 0
+          fi
+          NEEDED=$((TARGET - COUNT))
+          LEFT=$((24 - 10#$HOUR_NOW))
+          if [ "$NEEDED" -lt "$LEFT" ]; then
+            DO=$(python3 -c "import random; print(1 if random.random() < $NEEDED / $LEFT else 0)")
+            if [ "$DO" != "1" ]; then
+              echo "Skipping this hour."
+              exit 0
+            fi
+          fi
+          if grep -q "^activity:" activity.txt 2>/dev/null; then
+            sed -i '/^activity:/d' activity.txt
+            MSG="chore: clear daily activity marker"
+          else
+            echo "activity: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> activity.txt
+            MSG="chore: daily activity marker"
+          fi
+          git config user.name "Hussain Agha Hassani"
+          git config user.email "01.hussain.hassani@gmail.com"
+          git add activity.txt
+          git commit -m "$MSG"
+          git push
