@@ -23,8 +23,8 @@ jobs:
           sleep $((RANDOM % 1200))
           TODAY=$(date +%F)
           HOUR_NOW=$(date +%H)
-          TARGET=$(python3 -c "import hashlib; print(9 + int(hashlib.sha256('$TODAY'.encode()).hexdigest()[:8], 16) % 6)")
-          COUNT=$(git log --since="$TODAY 00:00:00 +0430" --until="$TODAY 23:59:59 +0430" --grep="daily activity" --oneline | wc -l)
+          TARGET=$(python3 -c "import hashlib; print(10 if '$TODAY' == '2026-11-20' else 9 + int(hashlib.sha256('$TODAY'.encode()).hexdigest()[:8], 16) % 6)")
+          COUNT=$(git log --since="$TODAY 00:00:00 +0430" --until="$TODAY 23:59:59 +0430" --author="Agha.hassani@auaf.edu.af" --grep="daily activity" --oneline | wc -l)
           echo "Today $TODAY target=$TARGET already=$COUNT hour=$HOUR_NOW"
           if [ "$COUNT" -ge "$TARGET" ]; then
             echo "Target reached for today."
