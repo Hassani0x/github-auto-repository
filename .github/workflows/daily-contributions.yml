@@ -47,7 +47,7 @@ jobs:
             MSG="chore: daily activity marker"
           fi
           git config user.name "Hussain Agha Hassani"
-          git config user.email "01.hussain.hassani@gmail.com"
+          git config user.email "Agha.hassani@auaf.edu.af"
           git add activity.txt
           git commit -m "$MSG"
           git push
