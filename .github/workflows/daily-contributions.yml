@@ -8,9 +8,9 @@ on:
 permissions:
   contents: write
   
-  concurrency:
-    group: daily-contributions
-      cancel-in-progress: false
+concurrency:
+  group: daily-contributions
+  cancel-in-progress: false
 
 jobs:
   contribute:
